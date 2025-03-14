@@ -1,0 +1,25 @@
+ configuration delta "MouseTargeting"
+	dialect <http://www.emftext.org/java>
+		modifies <../src/jab/module/Targeting.java>
+		{
+	addClassifierImport(<class:jab.module.Targeting>, "robocode.util.Utils");
+	addClassifierImport(<class:jab.module.Targeting>, "java.awt.event.InputEvent");
+	addClassifierImport(<class:jab.module.Targeting>, "java.awt.event.MouseEvent");
+	addMember(<class:jab.module.Targeting>, "int aimX;
+");
+	addMember(<class:jab.module.Targeting>, "int aimY;
+");
+	modifyStatementListContainer(<method:jab.module.Targeting.target()>, "public void target() {
+		double angle = Utils.normalAbsoluteAngle(Math.atan2(aimX - bot.getX(), aimY - bot.getY()));
+		bot.setTurnGunRightRadians(Utils.normalRelativeAngle(angle - bot.getGunHeadingRadians()));
+	}
+", "MouseTargeting", false);
+	addMember(<class:jab.module.Targeting>, "listenInput(InputEvent e){
+		if (e instanceof MouseEvent){
+			aimX = ((MouseEvent)e).getX();
+			aimY = ((MouseEvent)e).getY();
+		}
+	}
+");
+	}
+	

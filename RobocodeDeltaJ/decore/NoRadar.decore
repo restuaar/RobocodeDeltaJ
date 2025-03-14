@@ -1,0 +1,9 @@
+ configuration delta "NoRadar"
+	dialect <http://www.emftext.org/java>
+		modifies <../src/jab/module/Radar.java>
+		{
+	modifyStatementListContainer(<method:jab.module.Radar.scan()>, "public void scan() {
+	}
+", "NoRadar", false);
+	}
+	

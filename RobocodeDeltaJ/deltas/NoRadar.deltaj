@@ -1,0 +1,9 @@
+delta NoRadar {
+	modifies jab.module.Radar {
+	
+		modifies scan() {
+		
+		}
+	
+	}
+}

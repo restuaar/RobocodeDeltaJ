@@ -33,6 +33,7 @@
           <features maxCardinality="1" name="NoFireGun"/>
           <features maxCardinality="1" name="MaximumPowerGun"/>
           <features maxCardinality="1" name="MouseClickGun"/>
+          <features maxCardinality="1" name="RandomFireGun"/>
         </groups>
       </features>
       <features maxCardinality="1" name="SelectEnemy">

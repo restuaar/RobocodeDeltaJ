@@ -1,8 +1,9 @@
-delta CircularMovement {
-    modifies jab.module.Movement {
-        adds import java.lang.Thread;
-        
-        modifies move() {
+ configuration delta "CircularMovement"
+	dialect <http://www.emftext.org/java>
+		modifies <../src/jab/module/Movement.java>
+		{
+	addClassifierImport(<class:jab.module.Movement>, "java.lang.Thread");
+	modifyStatementListContainer(<method:jab.module.Movement.move()>, "public void move() {
             bot.setMaxVelocity(8);
             bot.setTurnRight(45);
             try {
@@ -17,6 +18,7 @@ delta CircularMovement {
 
             }
             bot.setAhead(10000);
-        }
-    }
-}
+	}
+", "CircularMovement", false);
+	}
+	

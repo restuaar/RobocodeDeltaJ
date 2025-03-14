@@ -1,0 +1,28 @@
+ configuration delta "RandomFireGun"
+	dialect <http://www.emftext.org/java>
+		modifies <../src/jab/module/Gun.java>
+		{
+	addClassifierImport(<class:jab.module.Gun>, "robocode.Rules");
+	addClassifierImport(<class:jab.module.Gun>, "robocode.Bullet");
+	addClassifierImport(<class:jab.module.Gun>, "java.util.Random");
+	addMember(<class:jab.module.Gun>, "private Random random;
+");
+	modifyStatementListContainer(<method:jab.module.Gun.fire()>, "public void fire() {
+            if (bot.enemy != null) {
+                // Menentukan kekuatan peluru secara acak antara 0.1 dan MAX_BULLET_POWER (3.0)
+                double bulletPower = 0.1 + (random.nextDouble() * (Rules.MAX_BULLET_POWER - 0.1));
+                
+                // Pastikan tidak menembak jika energi robot sangat rendah
+                bulletPower = Math.min(bulletPower, bot.getEnergy() - 0.01);
+                
+                bot.bulletPower = bulletPower;
+                
+                if (bot.getGunHeat() == 0) {
+                    robocode.Bullet b = bot.setFireBullet(bulletPower);
+                    bot.registerBullet(b);
+                }
+            }
+	}
+", "RandomFireGun", false);
+	}
+	

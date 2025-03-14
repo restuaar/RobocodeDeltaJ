@@ -1,0 +1,33 @@
+ configuration delta "RandomPowerGun"
+	dialect <http://www.emftext.org/java>
+		modifies <../src/jab/module/Gun.java>
+		{
+	addClassifierImport(<class:jab.module.Gun>, "robocode.Rules");
+	addClassifierImport(<class:jab.module.Gun>, "robocode.Bullet");
+	addClassifierImport(<class:jab.module.Gun>, "java.util.Random");
+	addMember(<class:jab.module.Gun>, "double bulletPower;
+");
+	modifyStatementListContainer(<method:jab.module.Gun.fire()>, "public void fire() {
+        if (bot.enemy != null) {
+           
+            double bulletPower = 0.1 + (Rules.MAX_BULLET_POWER - 0.1) * Random.nextDouble();
+            bulletPower = Math.min(bulletPower, bot.getEnergy() - 0.01);
+
+
+            if (bot.enemy.energy == 0) {
+                bulletPower = 0;
+            }
+
+
+            bot.bulletPower = bulletPower;
+
+
+            if (bot.getGunHeat() == 0 && bulletPower > 0) {
+                Bullet b = bot.setFireBullet(bulletPower);
+                bot.registerBullet(b);
+            	}
+        	}
+	}
+", "RandomPowerGun", false);
+	}
+	

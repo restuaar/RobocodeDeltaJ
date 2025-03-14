@@ -19,6 +19,7 @@
               <features maxCardinality="1" name="Line"/>
             </groups>
           </features>
+          <features maxCardinality="1" name="CircularMovement"/>
         </groups>
       </features>
       <features maxCardinality="1" name="Targeting">

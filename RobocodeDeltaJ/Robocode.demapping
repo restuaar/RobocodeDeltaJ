@@ -48,3 +48,6 @@ StrongestSelectEnemy:
 
 ClosestSelectEnemy:
 <decore/ClosestSelectEnemy.decore>
+
+CircularMovement:
+<decore/CircularMovement.decore>

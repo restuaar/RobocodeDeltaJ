@@ -1,0 +1,26 @@
+delta RandomFireGun {
+    modifies jab.module.Gun {
+        adds import robocode.Rules;
+        adds import robocode.Bullet;
+        adds import java.util.Random;
+        
+        adds private Random random;
+        
+        modifies fire() {
+            if (bot.enemy != null) {
+                // Menentukan kekuatan peluru secara acak antara 0.1 dan MAX_BULLET_POWER (3.0)
+                double bulletPower = 0.1 + (random.nextDouble() * (Rules.MAX_BULLET_POWER - 0.1));
+                
+                // Pastikan tidak menembak jika energi robot sangat rendah
+                bulletPower = Math.min(bulletPower, bot.getEnergy() - 0.01);
+                
+                bot.bulletPower = bulletPower;
+                
+                if (bot.getGunHeat() == 0) {
+                    robocode.Bullet b = bot.setFireBullet(bulletPower);
+                    bot.registerBullet(b);
+                }
+            }
+        }
+    }
+}

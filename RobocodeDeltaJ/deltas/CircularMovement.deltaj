@@ -1,2 +1,16 @@
-delta CircularMovement {
+delta ZigZagMovement {
+    modifies jab.module.Movement {
+        adds import java.lang.Thread;
+        
+        modifies move() {
+            bot.setMaxVelocity(8);
+            // Perform zigzag movement
+            bot.setTurnRight(45);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+
+            }
+        }
+    }
 }

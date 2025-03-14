@@ -1,0 +1,29 @@
+delta RandomPowerGun {
+    modifies jab.module.Gun {
+		adds import robocode.Rules;
+		adds import robocode.Bullet;
+		adds import java.util.Random;
+		adds double bulletPower;
+        modifies fire() {
+        if (bot.enemy != null) {
+           
+            double bulletPower = 0.1 + (Rules.MAX_BULLET_POWER - 0.1) * Random.nextDouble();
+            bulletPower = Math.min(bulletPower, bot.getEnergy() - 0.01);
+
+
+            if (bot.enemy.energy == 0) {
+                bulletPower = 0;
+            }
+
+
+            bot.bulletPower = bulletPower;
+
+
+            if (bot.getGunHeat() == 0 && bulletPower > 0) {
+                Bullet b = bot.setFireBullet(bulletPower);
+                bot.registerBullet(b);
+            	}
+        	}
+        }
+    }
+}

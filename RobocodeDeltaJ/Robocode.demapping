@@ -49,5 +49,8 @@ StrongestSelectEnemy:
 ClosestSelectEnemy:
 <decore/ClosestSelectEnemy.decore>
 
+RandomPowerGun:
+<decore/RandomPowerGun.decore>
+
 CircularMovement:
 <decore/CircularMovement.decore>
